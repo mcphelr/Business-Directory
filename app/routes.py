@@ -4,6 +4,7 @@ from app.forms import RegistrationForm, LoginForm
 from app.database_models import User, Business_details, Family, Keywords
 from flask_login import login_user
 
+
 posts = [
 	{
 		'business': 'Garden Grove',
