@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):					#Creates a database class for the user
 	username = db.Column(db.String(30), unique=True, nullable=False)	#Creates the username column, where each entry needs to be unique to other entries in this column.
 	email = db.Column(db.String(50), unique=True, nullable=False)
 	password = db.Column(db.String(60), nullable=False)
+	profile_picture = db.Column(db.String(20), nullable=False, default='default.jpg')
 	creator_id = db.Column(db.Integer, db.ForeignKey('business_details.id'))
 
 	def __repr__(self):
@@ -21,11 +22,11 @@ class Business_details(db.Model):
 	keywords = db.relationship('Keywords', backref='keyword_selection', lazy=True)
 	family_name = db.relationship('Family', backref='Family_name', lazy=True)
 	creator = db.relationship('User', backref='Entry_creator', lazy=True)
-#Error Here: sqlalchemy.exc.NoForeignKeysError:
+
 	phone_number = db.Column(db.String(12), nullable = False)
 	email = db.Column(db.String(50), nullable=False)
 	address = db.Column(db.String(60), nullable=False)
-	display_photo = db.Column(db.String(20))
+	business_photo = db.Column(db.String(20), nullable =False, default='default.jpg')
 	web_address = db.Column(db.String(60), nullable=False)
 	company_name = db.Column(db.String(60), nullable=False)
 	description = db.Column(db.String(120), nullable=False)
