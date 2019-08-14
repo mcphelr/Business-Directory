@@ -25,9 +25,9 @@ class Business_details(db.Model):
 
 	phone_number = db.Column(db.String(12), nullable = False)
 	email = db.Column(db.String(50), nullable=False)
-	address = db.Column(db.String(60), nullable=False)
+	address = db.Column(db.String(60))
 	business_photo = db.Column(db.String(20), nullable =False, default='default.jpg')
-	web_address = db.Column(db.String(60), nullable=False)
+	web_address = db.Column(db.String(60))
 	company_name = db.Column(db.String(60), nullable=False)
 	description = db.Column(db.String(120), nullable=False)
 	

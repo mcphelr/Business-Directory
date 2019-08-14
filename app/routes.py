@@ -97,3 +97,9 @@ def account():
 		form.email.data = current_user.email
 	image_file = url_for('static', filename='Photos/'+current_user.profile_picture)
 	return render_template('account.html', title ='Account', image_file=image_file, form=form)
+
+@app.route('/business/new')
+@login_required
+def new_business():
+	return render_template('add_business.html', title ='Business')
+

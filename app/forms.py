@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed 
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from app.database_models import User
 class RegistrationForm(FlaskForm):
@@ -47,3 +47,12 @@ class UpdateAccountForm(FlaskForm):
 			if user:
 				raise ValidationError('Email is taken.')
 		
+class BusinessForm(FlaskForm):
+	company_name = StringField('Company name', validators=[DataRequired()])
+	contact_phone_number = StringField('Contanct Number', validators=[DataRequired()])
+	contact_email_address = StringField('Contact Email', validators=[DataRequired()])
+	business_address = StringField('Business Street Address')
+	web_address = StringField('Web Address')
+	description = TextAreaField('Company Description', validators=[DataRequired()])
+	business_photo = StringField('Business Photo', validators=[FileAllowed(['jpg', 'png'])])
+	submit = SubmitField('Add Business')
