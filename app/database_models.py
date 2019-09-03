@@ -7,15 +7,12 @@ def load_user(user_id):
 
 class User(db.Model, UserMixin):					#Creates a database class for the user
 	id = db.Column(db.Integer, primary_key=True)		#Creates the primary key for the database which is unique
-	role = db.Column(db.String(30), nullable=False)		#Creates a role column in the database, where each entry needs to have an input for this
+	role = db.Column(db.String(30), nullable=False, default='guest')		#Creates a role column in the database, where each entry needs to have an input for this
 	username = db.Column(db.String(30), unique=True, nullable=False)	#Creates the username column, where each entry needs to be unique to other entries in this column.
 	email = db.Column(db.String(50), unique=True, nullable=False)
 	password = db.Column(db.String(60), nullable=False)
-	profile_picture = db.Column(db.String(20), nullable=False, default='default.jpg')
-	creator_id = db.Column(db.Integer, db.ForeignKey('business_details.id'))
-
-	def __repr__(self):
-		return f"User('{self.role}', '{self.username}', '{self.email}', '{self.password}')"
+	profile_picture = db.Column(db.String(20), nullable=False, default='default.jpg')	#Allows the picture file to be registered, with a default supplied if no picture is added
+	creator_id = db.Column(db.Integer, db.ForeignKey('business_details.id'))	#Creates a foreign key for the linking to the business
 
 class Business_details(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
