@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed 
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
@@ -31,7 +31,7 @@ class LoginForm(FlaskForm):
 class UpdateAccountForm(FlaskForm):
 	username = StringField('Owner', validators=[DataRequired(), Length(min=2, max=16)])
 	email = StringField('Email', validators=[DataRequired(), Email()])
-	picture = FileField('Change Profile Picture', validators = [FileAllowed(['jpg', 'png'])])
+	picture = FileField('Change Profile Picture', validators = [FileRequired(), FileAllowed(['jpg', 'png'])])
 	submit = SubmitField('Update Account')
 
 	def validate_username(self, username):
@@ -53,5 +53,5 @@ class BusinessForm(FlaskForm):
 	business_address = StringField('Business Street Address')
 	web_address = StringField('Web Address')
 	description = TextAreaField('Company Description', validators=[DataRequired()])
-	business_photo = StringField('Business Photo', validators=[FileAllowed(['jpg', 'png'])])
+	business_photo = StringField('Business Photo', validators=[FileRequired(), FileAllowed(['jpg', 'png'])])
 	submit = SubmitField('Add Business')
