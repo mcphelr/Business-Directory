@@ -71,24 +71,24 @@ def save_profile_picture(form_picture):
 	picture_path = os.path.join(app.root_path, 'static/Photos', picture_fn)
 	
 
-	output_size = (125, 125)
+	output_size = (125, 125)	# Changing size of the photos
 	i = Image.open(form.picture)
 	i.thumbnail(output_size)
 
-	i.save(picture_path)
+	i.save(picture_path)	#Saving the picture
 
-	return picture_fn
+	return picture_fn	# Returns the file name of the photo so it can be accessed
 
 
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
-	form = UpdateAccountForm()
+	form = UpdateAccountForm()			
 	if form.validate_on_submit():
 		if form.picture.data:
-			picture_file = save_profile_picture(form.picture.data)
-			current_user.profile_picture = picture_file
-		current_user.username = form.username.data
+			picture_file = save_profile_picture(form.picture.data)	#Having problem here, saying form is not defined
+			current_user.profile_picture = picture_file		#Should change the current users profile picture to the one added in the form.
+		current_user.username = form.username.database_models	#Updates other information
 		current_user.email = form.email.data
 		db.session.commit()
 		flash('Your account has been updated', 'success')
