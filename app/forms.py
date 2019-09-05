@@ -47,11 +47,11 @@ class UpdateAccountForm(FlaskForm):
 				raise ValidationError('Email is taken.')
 		
 class BusinessForm(FlaskForm):
-	company_name = StringField('Company name', validators=[DataRequired()])
+	business_name = StringField('Business name', validators=[DataRequired()])
 	contact_phone_number = StringField('Contanct Number', validators=[DataRequired()])
 	contact_email_address = StringField('Contact Email', validators=[DataRequired()])
 	business_address = StringField('Business Street Address')
 	web_address = StringField('Web Address')
-	description = TextAreaField('Company Description', validators=[DataRequired()])
+	business_description = TextAreaField('Business Description', validators=[DataRequired()])
 	business_photo = StringField('Business Photo', validators=[FileRequired(), FileAllowed(['jpg', 'png'])])
 	submit = SubmitField('Add Business')

@@ -102,5 +102,17 @@ def account():
 @app.route('/business/new')
 @login_required
 def new_business():
-	return render_template('add_business.html', title ='Business')
+	form = BusinessForm()
+	if form.validate_on_submit():
+		business = Business_details(company_name=form.business_name.data, 
+				phone_number=form.contact_phone_number.data,
+				email=form.contact_email_address.data,
+				address=form.web_address.data,
+				business_photo=form.business_photo.data,
+				web_address=form.web_address.data,
+				description=form.business_description.data)
+		db.session.add(business)
+		db.session.commit()
+
+	return render_template('add_business.html', title ='Business', form=form)
 
