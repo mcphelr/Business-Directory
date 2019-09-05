@@ -72,7 +72,7 @@ def save_profile_picture(form_picture):
 	
 
 	output_size = (125, 125)	# Changing size of the photos
-	i = Image.open(form.picture)
+	i = Image.open(form_picture)
 	i.thumbnail(output_size)
 
 	i.save(picture_path)	#Saving the picture
