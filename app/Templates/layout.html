@@ -38,6 +38,7 @@
 	        	{% if current_user.is_authenticated %}
 	        	<a class="nav-item nav-link" href="/account">Account</a>
 	        	<a class="nav-item nav-link" href="/logout">Logout</a>
+	        	<a class="nav-item nav-link" href="/business/new">Business</a>			<!-- Add an if statement which determines if there is a business for the account yet and if so, it will take it to the business page, if not, it will go to create page. -->
 	        	{% else%}
 	          		<a class="nav-item nav-link" href="/login">Login</a>
 	          		<a class="nav-item nav-link" href="/register">Register</a>

@@ -3,27 +3,15 @@ import os
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request
 from app import app, bcrypt, db
-from app.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, BusinessForm
 from app.database_models import User, Business_details, Family, Keywords
 from flask_login import login_user, current_user, logout_user, login_required
 
 
-posts = [
-	{
-		'business': 'Garden Grove',
-		'owner': 'Del-oro',
-		'description': 'A gardening store',
-	},
-	{
-		'business': 'Murdey-Green Photography',
-		'owner': 'Murdey-Green',
-		'description': 'A Photography company',
-	}
-]
-
 @app.route('/')
 @app.route('/home')
 def home():
+	posts = Business_details.query.all()
 	return render_template ('home.html', posts=posts)
 
 @app.route('/about')
@@ -68,7 +56,7 @@ def save_profile_picture(form_picture):
 	random_hex = secrets.token_hex(8)		#Creates a random hex to add to the file name so that it does not conflict with present photos in the db
 	_, f_ext = os.path.splitext(form_picture.filename)	#Returns the extension of the file
 	picture_fn = random_hex + f_ext
-	picture_path = os.path.join(app.root_path, 'static/Photos', picture_fn)
+	picture_path = os.path.join(app.root_path, 'static/Photos/profile_pictures', picture_fn)
 	
 
 	output_size = (125, 125)	# Changing size of the photos
@@ -96,23 +84,27 @@ def account():
 	elif request.method == 'GET':
 		form.username.data = current_user.username
 		form.email.data = current_user.email
-	profile_picture = url_for('static', filename='Photos/'+current_user.profile_picture)
+	profile_picture = url_for('static', filename='Photos/profile_pictures/'+current_user.profile_picture)
 	return render_template('account.html', title ='Account', profile_picture=profile_picture, form=form)
 
-@app.route('/business/new')
+@app.route('/business/new', methods=['GET', 'POST'])
 @login_required
 def new_business():
 	form = BusinessForm()
 	if form.validate_on_submit():
-		business = Business_details(company_name=form.business_name.data, 
+		business = Business_details(business_name=form.business_name.data, 
 				phone_number=form.contact_phone_number.data,
 				email=form.contact_email_address.data,
 				address=form.web_address.data,
 				business_photo=form.business_photo.data,
 				web_address=form.web_address.data,
-				description=form.business_description.data)
+				description=form.business_description.data,
+				Entry_creator=current_user)
 		db.session.add(business)
 		db.session.commit()
+		flash('Your business has been added', 'success')
+		return redirect(url_for('home'))
+	#business_photo = url_for('static', filename='Photos/profile_pictures'+)
 
-	return render_template('add_business.html', title ='Business', form=form)
+	return render_template('create_business.html', title ='Business', form=form)	#Add the business_photo soon
 

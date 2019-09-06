@@ -48,10 +48,10 @@ class UpdateAccountForm(FlaskForm):
 		
 class BusinessForm(FlaskForm):
 	business_name = StringField('Business name', validators=[DataRequired()])
-	contact_phone_number = StringField('Contanct Number', validators=[DataRequired()])
+	contact_phone_number = StringField('Contact Number', validators=[DataRequired()])
 	contact_email_address = StringField('Contact Email', validators=[DataRequired()])
 	business_address = StringField('Business Street Address')
 	web_address = StringField('Web Address')
 	business_description = TextAreaField('Business Description', validators=[DataRequired()])
-	business_photo = StringField('Business Photo', validators=[FileRequired(), FileAllowed(['jpg', 'png'])])
+	business_photo = FileField('Business Photo', validators=[FileAllowed(['jpg', 'png'])])
 	submit = SubmitField('Add Business')
