@@ -87,16 +87,41 @@ def account():
 	profile_picture = url_for('static', filename='Photos/profile_pictures/'+current_user.profile_picture)
 	return render_template('account.html', title ='Account', profile_picture=profile_picture, form=form)
 
+def save_business_picture(form_picture):
+	random_hex = secrets.token_hex(8)		#Creates a random hex to add to the file name so that it does not conflict with present photos in the db
+	_, f_ext = os.path.splitext(form_picture.filename)	#Returns the extension of the file
+	picture_fn = random_hex + f_ext
+	picture_path = os.path.join(app.root_path, 'static/Photos/business_photos', picture_fn)
+	
+
+	output_size = (125, 125)	# Changing size of the photos
+	i = Image.open(form_picture)
+	i.thumbnail(output_size)
+
+	i.save(picture_path)	#Saving the picture
+
+	return picture_fn	# Returns the file name of the photo so it can be accessed
+
 @app.route('/business/new', methods=['GET', 'POST'])
 @login_required
 def new_business():
 	form = BusinessForm()
 	if form.validate_on_submit():
-		business = Business_details(business_name=form.business_name.data, 
+		if form.business_photo.data:
+			business_photo_file = save_business_picture(form.business_photo.data)
+			business = Business_details(business_name=form.business_name.data, 
 				phone_number=form.contact_phone_number.data,
 				email=form.contact_email_address.data,
 				address=form.web_address.data,
-				business_photo=form.business_photo.data,
+				business_photo=business_photo_file,
+				web_address=form.web_address.data,
+				description=form.business_description.data,
+				Entry_creator=current_user)
+		else:
+			business = Business_details(business_name=form.business_name.data, 
+				phone_number=form.contact_phone_number.data,
+				email=form.contact_email_address.data,
+				address=form.web_address.data,
 				web_address=form.web_address.data,
 				description=form.business_description.data,
 				Entry_creator=current_user)
@@ -106,5 +131,9 @@ def new_business():
 		return redirect(url_for('home'))
 	#business_photo = url_for('static', filename='Photos/profile_pictures'+)
 
-	return render_template('create_business.html', title ='Business', form=form)	#Add the business_photo soon
+	return render_template('create_business.html', title ='Business', form=form, business_picture=Business_details.business_photo)	#Add the business_photo soon
 
+@app.route("/post/<int:post_id>")
+def post(post_id):
+	post = post.query.get_or_404(post_id)
+	return render_template('post.html', title=post.title, post=post)
