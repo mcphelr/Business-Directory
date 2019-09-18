@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+		<article class="media content-section">
+			<img class="rounded-circle article-img" src="{{ url_for('static', filename='Photos/business_photos/'+business.business_photo) }}">
+			<div class="media-body">
+		    	<div class="article-metadata">
+		    	<a class="mr-2" href="#">{{ business.Entry_creator.username }}</a>
+		    	</div>
+		    <h2 class="article-title">{{ business.business_name }}</h2>
+		    <p class="article-content">{{business.description}}</p>
+		    <p class="article-content">Phone: {{business.phone_number}}</p>
+		    <p class="article-content">Email: {{business.email}}</p>
+		    <p class="article-content">Address: {{business.address}}</p>
+		    <p class="article-content">Website: {{business.web_address}}</p>
+			</div>
+		</article>
+{% endblock content %}

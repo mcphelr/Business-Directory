@@ -137,3 +137,8 @@ def new_business():
 def post(post_id):
 	post = post.query.get_or_404(post_id)
 	return render_template('post.html', title=post.title, post=post)
+
+@app.route("/business/<int:business_id>")
+def business(business_id):
+	business = Business_details.query.get_or_404(business_id)
+	return render_template('business.html', title=business.business_name, business=business)
