@@ -133,11 +133,6 @@ def new_business():
 
 	return render_template('create_business.html', title ='Business', form=form, business_picture=Business_details.business_photo)	#Add the business_photo soon
 
-@app.route("/post/<int:post_id>")
-def post(post_id):
-	post = post.query.get_or_404(post_id)
-	return render_template('post.html', title=post.title, post=post)
-
 @app.route("/business/<int:business_id>")
 def business(business_id):
 	business = Business_details.query.get_or_404(business_id)
