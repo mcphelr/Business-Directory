@@ -112,7 +112,7 @@ def new_business():
 			business = Business_details(business_name=form.business_name.data, 
 				phone_number=form.contact_phone_number.data,
 				email=form.contact_email_address.data,
-				address=form.web_address.data,
+				address=form.business_address.data,
 				business_photo=business_photo_file,
 				web_address=form.web_address.data,
 				description=form.business_description.data,
@@ -121,7 +121,7 @@ def new_business():
 			business = Business_details(business_name=form.business_name.data, 
 				phone_number=form.contact_phone_number.data,
 				email=form.contact_email_address.data,
-				address=form.web_address.data,
+				address=form.business_address.data,
 				web_address=form.web_address.data,
 				description=form.business_description.data,
 				Entry_creator=current_user)
