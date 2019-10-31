@@ -1,80 +1,107 @@
+.R12Text{
+    margin-top:20px; /*Sets margin for the class to 20px from the top of the container.*/
+}
+
+.half-circle{
+    width: 240px; /*Changes the width of the circle itself*/
+    height: 120px; /*Changes the height of the circle itself*/
+    background-color: rgb(208, 35, 49); /*Sets the colour of the circle*/
+    border-bottom-left-radius: 240px; /*sets one half of the circle to a circle, instead of a rectangle*/
+    border-bottom-right-radius: 240px; /*Sets the other half of the circle's radius*/
+    margin-left: 520px; /*Changes position on the page relative to the left margin*/
+    margin-top:-30px; /*Changes position on the page relative to the top margin*/
+    z-index:2; /*Changes the stack order (anything above 2 will appear above it and vice versa*/
+    position:fixed; /*Sets position so it cannot move*/
+    vertical-align: middle; /*Failed test - attempted to align it to centre*/
+}
+
 body {
-  background: #fafafa;
-  color: #333333;
-  margin-top: 5rem;
+  background: #fafafa; /*Background colour*/
+  color: #333333; /*Colour*/
+  margin-top: 5rem; /*Sets top margin to five font heights*/
+  background-image: url(../static/Photos/website/Backgroundcropped.jpg); /*Links the background image*/
+  background-repeat: no-repeat; /*Stops the background image from repeating - sets background to one large image*/
+  background-size: cover; /*Makes the background image take up the entire space*/
+  background-color:rgb(5, 73, 152); /*Sets background colour, so if one scrolls past the bottom of the page they see that colour*/
+  background-attachment: fixed;/*Sets is position so it can't move*/
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+  color: #111111; /*Sets the text colour for any text in the h1-h6 category*/
 }
 
 .bg-steel {
-  background-color: #5f788a;
+  background-color: #ffffff; /*Under the div .bg-steel, the background colour is set.*/
 }
 
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+  color: white; /*Under the mentioned div classes, text colour is white.*/
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
+  color: lightgray; /*When the mentioned div classes are hovered on, they change colour to light grey.*/
 }
 
 .site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
+  font-weight: 500; /*Under the mentioned classes, font-weight set to 500.*/
 }
 
 .content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
+  background: #ffffff; /*Under the div .content-section, this sets background colour*/
+  padding: 10px 20px; /*Sets top-bottom and left-right padding from L-R.*/
+  border: 1px solid #dddddd; /*Sets the border to 1px in width, solid in fill, and also the colour*/
+  border-radius: 3px; /*Sets the rounded edge on each corner to 3px.*/
+  margin-bottom: 20px; /*Sets it to appear 20px above the bottom margin.*/
 }
 
 .article-title {
-  color: #444444;
+  color: #444444; /*Under .article-title, sets colour*/
 }
 
 a.article-title:hover {
-  color: #428bca;
-  text-decoration: none;
+  color: #DC143C; /*When under this class, sets colour.*/
+  text-decoration: none; /*Removes any and all text changes, such as italics.*/
 }
 
 .article-content {
-  white-space: pre-line;
+  white-space: pre-line; /*Text only wraps on line-breaks.*/
 }
 
 .article-img {
-  height: 65px;
-  width: 65px;
-  margin-right: 16px;
+  height: 65px; /*Sets .article-img class to height of 65px*/
+  width: 65px; /*Sets the width to 65px*/
+  margin-right: 16px; /*Offsets the image 16px from the right of screen.*/
 }
 
 .article-metadata {
-  padding-bottom: 1px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+  padding-bottom: 1px; /*Under .article-metadata, bottom padding goes to 1px*/
+  margin-bottom: 4px; /*The margin in this class set 4px from the bottom of screen*/
+  border-bottom: 1px solid #e3e3e3 /*Sets border width of 1px, fill of solid line and colour*/
 }
 
 .article-metadata a:hover {
-  color: #333;
-  text-decoration: none;
+  color: #333; /*When .article-metadata is hovered over, this colour displays*/
+  text-decoration: none; /*Removes all text decoration*/
 }
 
 .article-svg {
-  width: 25px;
+  width: 25px; /*Under this class, width is set to 25px. The height property below does the same thing to the height.*/
   height: 25px;
-  vertical-align: middle;
+  vertical-align: middle; /*Algins the class to the centre of the page.*/
 }
 
 .account-img {
-  height: 125px;
+  height: 125px; /*The height property here and the width below set their respective properties to 125px*/
   width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
+  margin-right: 20px; /*The margin on the right is 20px from the class position*/
+  margin-bottom: 16px; /*Same as above, but 16px from the bottom margin*/
 }
 
 .account-heading {
-  font-size: 2.5rem;
+  font-size: 2.5rem; /*Sets the font size to 2.5 default font heights for this class.*/
 }
+
+nav.navbar{
+    background-color: rgb(5,73,152); /*For the class nav.navbar, this sets background colour.*/
+    z-index:1; /*Changes the stacking for this element. All z-indices above 1 will appear in front and vice versa*/
+  }

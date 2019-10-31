@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<style>
-	nav.navbar{
-		background-color: rgb(5,73,152);
-	}
-</style>
 <html>
 <head>
 	 <!-- Required meta tags -->
@@ -12,7 +7,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main.css')}}">
+   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main.css')}}">
+       <!-- <link rel="stylesheet" type="text/css" href="{filename='static\main1.css')}}"> -->
+
 	{% if title %}
 		<title>Business Directory - {{ title }}</title>
 	{% else %}
@@ -20,19 +17,18 @@
 	{% endif %}
 </head>
 <body>
-	<img src="../static/Photos/website/Background.jpg" alt="Pedare Driveway">
 	<header class="site-header">
 	  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-	    <div class="container">
-	      <a class="navbar-brand mr-4" href="/">Business Directory</a>
+	  	<div class="half-circle"></div> <!--This inserts the half circle class used in styling the logo-->
+	<img src="../static/Photos/website/Logo2.jpg" img style="margin-top:-30px; margin-left: 580px; height:100px; position:fixed; z-index:3; margin-bottom: 10px; vertical-align:middle"><!--This styling and sourcing affects the logo of the site. Detailed comments on what these do are found in the CSS page-->
+	    <div class="container" style="z-index:-1"> <!--Sets the styling for the container class.-->
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="navbar-toggler-icon"></span>
 	      </button>
 	      <div class="collapse navbar-collapse" id="navbarToggle">
 	        <div class="navbar-nav mr-auto">
-	          <a class="nav-item nav-link" href="/">Home</a>
-	          <a class="nav-item nav-link" href="/about">About</a>
-	        </div>
+	          <a class="nav-item nav-link" href="/" style="margin-left:-50px; background-color:rgb(6, 68, 154)">Home</a><!--Styles the nav-item nav-link class-->
+	         </div>
 	        <!-- Navbar Right Side -->
 	        <div class="navbar-nav">
 	        	{% if current_user.is_authenticated %}
@@ -47,6 +43,7 @@
 	      </div>
 	    </div>
 	  </nav>
+	  <h5 style="color:white; text-align:center; margin-top:7rem;padding-top:20px">An R-12 Anglican and Uniting Church School</h5><!--Styles and sets the h6 heading between the navbar and the header-->
 	</header>
 	<main role="main" class="container">
 	  <div class="row">
